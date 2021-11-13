@@ -1,0 +1,30 @@
+const { Telegraf } = require('telegraf
+const axios = require('axios')
+const config = require('./config.json')
+
+// for me to access the bot
+const bot = new Telegraf(config.token)
+
+// setting up a /start command
+bot.start((ctx) => {
+    bot.telegram.sendChatAction(ctx.chat.id, "typing")
+    ctx.reply('Whatever you want the bot to say when you /start')
+})
+
+bot.help((ctx) => {
+    bot.telegram.sendChatAction(ctx.chat.id, "typing")
+    ctx.reply('Whatever you want the bot to say when you /help')
+})
+
+// type /fortune and you will get back a random quote
+bot.command('fortune', (ctx) => {
+    fortuneURL = 'http://yerkee.com/api/fortune'
+    axios.get(fortuneURL)
+    .then((res) => {
+        console.log(res.data.fortune)
+        ctx.reply(res.data.fortune)
+    })
+})
+
+// launch the bot
+bot.launch()
