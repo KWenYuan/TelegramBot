@@ -1,0 +1,63 @@
+bot.command('test', (ctx) =>{
+    bot.telegram.sendMessage(ctx.chat.id, "One or Two?",
+    {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {text: "one", callback_data: 'one'}
+                ],
+                [
+                    {text: "two", callback_data: 'two'}
+                ]
+            ]
+        }
+    })
+})
+
+bot.action('one', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendMessage(ctx.chat.id,"Back to menu?",
+    {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {text: "back", callback_data: 'menu'}
+                ],
+            ]
+        }
+    })
+})
+
+bot.action('two', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendMessage(ctx.chat.id,"Back to menu?",
+    {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {text: "back", callback_data: 'menu'}
+                ],
+            ]
+        }
+    })
+})
+
+bot.action('menu', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendMessage(ctx.chat.id, "One or Two?",
+    {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {text: "one", callback_data: 'one'}
+                ],
+                [
+                    {text: "two", callback_data: 'two'}
+                ]
+            ]
+        }
+    })
+})
