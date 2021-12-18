@@ -78,3 +78,5 @@ bot.action('menu', (ctx) => {
         }
     })
 })
+
+bot.launch();
