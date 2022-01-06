@@ -1,0 +1,47 @@
+const { Telegraf } = require('telegraf')
+const axios = require('axios')
+const config = require('./config.json')
+
+// for me to access the bot
+const bot = new Telegraf(config.token)
+
+// setting up a /start command
+bot.start((ctx) => {
+    bot.telegram.sendChatAction(ctx.chat.id, "typing")
+    ctx.reply('Whatever you want the bot to say when you /start')
+})
+
+bot.help((ctx) => {
+    bot.telegram.sendChatAction(ctx.chat.id, "typing")
+    ctx.reply('Whatever you want the bot to say when you /help')
+})
+
+bot.command('quiz', (ctx) => {
+        bot.telegram.sendPoll(ctx.chat.id, "Your question here", 
+        ["Choice 1", "Choice 2"],
+        {
+        is_anonymous : false,
+        type : "quiz",
+        correct_option_id : 0,
+        explanation : "Explanation here"
+        }
+        )
+    })
+    
+bot.command('poll', (ctx) => {
+        bot.telegram.sendPoll(ctx.chat.id, "Your question here", 
+        ["Choice 1", "Choice 2"],
+        {
+        is_anonymous : true,
+        type : "regular",
+        allows_multiple_answers : true,
+        // set time limit
+        open_period : 60,
+        // prevent forwarding sent message
+        protect_content : true
+        }
+        )
+    })
+  
+// launch the bot
+bot.launch()
