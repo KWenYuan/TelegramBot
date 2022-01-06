@@ -15,5 +15,87 @@ bot.help((ctx) => {
     ctx.reply('Whatever you want the bot to say when you /help')
 })
 
+bot.command('roll', (ctx) => {
+    bot.telegram.sendMessage(ctx.chat.id, "Which emoji do you want to choose?",
+    {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {text: "🎲", callback_data: 'dice'},
+                    {text: "🎯", callback_data: 'dart'},
+                    {text: "🏀", callback_data: 'basketball'},
+                ],
+                [
+                    {text: "⚽", callback_data: 'soccerball'},
+                    {text: "🎳", callback_data: 'bowl'},
+                    {text: "🎰", callback_data: 'slots'},
+                ],
+                [
+                    {text: "Cancel", callback_data: 'cancelRoll'}
+                ]
+
+            ]
+        }
+    })
+})
+
+bot.action('dice', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendDice(ctx.chat.id,
+        {
+            emoji : "🎲"
+        })
+})
+
+bot.action('dart', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendDice(ctx.chat.id,
+        {
+            emoji : "🎯"
+        })
+})
+
+bot.action('basketball', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendDice(ctx.chat.id,
+        {
+            emoji : "🏀"
+        })
+})
+
+bot.action('soccerball', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendDice(ctx.chat.id,
+        {
+            emoji : "⚽"
+        })
+})
+
+bot.action('bowl', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendDice(ctx.chat.id,
+        {
+            emoji : "🎳"
+        })
+})
+
+bot.action('slots', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+    bot.telegram.sendDice(ctx.chat.id,
+        {
+            emoji : "🎰"
+        })
+})
+
+bot.action('cancelRoll', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.deleteMessage();
+})
 // launch the bot
 bot.launch()
