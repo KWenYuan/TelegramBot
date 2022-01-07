@@ -1,0 +1,19 @@
+{
+  "name": "telegrambotjs2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "nodemon": "nodemon ./bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "finviz": "^0.0.3",
+    "nodemon": "^2.0.15",
+    "telegraf": "^4.5.2"
+  }
+}
