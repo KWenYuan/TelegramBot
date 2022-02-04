@@ -1,0 +1,28 @@
+const { Telegraf } = require('telegraf')
+const config = require('./config.json')
+
+// for me to access the bot
+const bot = new Telegraf(config.token)
+
+// setting up a /start command
+bot.start((ctx) => {
+    bot.telegram.sendChatAction(ctx.chat.id, "typing")
+    ctx.reply('Whatever you want the bot to say when you /start')
+})
+
+bot.help((ctx) => {
+    bot.telegram.sendChatAction(ctx.chat.id, "typing")
+    ctx.reply('Whatever you want the bot to say when you /help')
+})
+
+bot.on("text", (ctx) => {
+    let text = ctx.message.text.toUpperCase();
+    let result = text.includes("Whatever you want the word to be detected here");
+    if (result === true) {
+        ctx.reply("Whatever you want the bot to reply")
+    } else {
+    // whatever you want the bot to say if result != true
+    }
+})
+// launch the bot
+bot.launch()
