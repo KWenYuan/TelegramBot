@@ -41,7 +41,9 @@ Basic javascript syntax is needed
 
     `token = YOUR_API_KEY`
     
-    `const config = require('./config.json');`
+    '{
+    "token" : "Your key here"
+    }'
     
 ## Usage
 As this bot was built using javascript and Telegraf package, you can refer to both the [Telegram Bot page](https://core.telegram.org/bots) and [Telegraf Bot Documentation](https://telegraf.js.org/)
